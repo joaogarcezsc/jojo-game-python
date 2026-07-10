@@ -196,53 +196,147 @@ fases_do_jogo = [
     }
 ]
 
-#----------SAUDAÇÕES----------#
+#----------FRASES NARRATIVAS----------#
 
 def saudacao_inical():
-    print("\n-----BEM-VINDO AO GAME DE JOJO'S BIZARRES ADVENTURE EM PYTHON !-----\n")
-    print("Nesse jogo você irá controlar o grupo de amigos liderados por Joseph Joestar e Jotaro Kujo em sua jornada para o Egito na caça de Dio, para salvar a vida de Holy Joestar !\n")
-    input("Tecle enter para seguir para as regras do jogo\n")
+    os.system('cls')
+    print("\n=====================================================================")
+    print("     ★  BEM-VINDO AO GAME DE JOJO'S BIZARRE ADVENTURE: STARDUST  ★     ")
+    print("=====================================================================\n")
+    print("Prepare-se! Você está prestes a assumir o comando dos lendários Stardust Crusaders.")
+    print("Liderados por Joseph Joestar e o implacável Jotaro Kujo, o grupo partirá em uma")
+    print("jornada desesperada rumo ao Egito para caçar DIO e salvar a vida de Holy Joestar!\n")
+    input("[Pressione ENTER para ler as diretrizes da jornada...]\n")
     regras_do_jogo()
 
 def regras_do_jogo():
     os.system('cls')
-    print('-----REGRAS DO GAME-----\n')
-    print('O game consiste em acompanhar a narrativa da jornada de Jojo e seus amigos até ao Egito em busca de derrotar Dio !\n')
-    print('Durante a jornada, você precisará escolher os personagens corretos para vencer os vilões que forem aparecendo no caminho, uma escolha errada fará você perder o jogo !\n')
-    #input('Vamos Nessa ? (Tecle enter para começar)\n')
-    #texto_de_introducao("DATA: 28 de Novembro de 1988\nLOCAL: Prisão de Tóquio, Japão\nUm jovem de 17 anos, Jotaro Kujo, trancou-se em uma cela alegando estar possuído por um 'espírito maligno'. Mal sabia ele que essa força é um Stand, uma manifestação de sua própria energia vital, despertada pelo retorno do arqui-inimigo de sua família: DIO.\nCom a vida de sua mãe, Holy Joestar, correndo perigo devido à febre do Stand, o relógio começa a correr. Joseph Joestar, Jotaro, Avdol, Kakyoin e Polnareff iniciam uma jornada desesperada de 50 dias rumo ao Egito. O destino do sangue Joestar será decidido agora!")
-    input('\n(Tecle Enter)')
+    print("=====================================================================")
+    print("                          DIRETRIZES DO JOGO                       ")
+    print("=====================================================================\n")
+    print("• Siga os passos cronológicos da icônica viagem dos Crusaders até o Cairo.")
+    print("• Em cada território, um assassino enviado por DIO bloqueará o seu caminho.")
+    print("• CRUCIAL: Você deve escolher o herói CORRETO para cada confronto baseado no anime.")
+    print("Um único erro de estratégia custará a vida do grupo e resultará em Game Over!\n")
+    input("O destino do sangue Joestar está em suas mãos. (Pressione ENTER para começar)\n")
+    
+    # Texto de introdução disparado com o efeito clássico de máquina de escrever
+    texto_corrido(
+        "DATA: 28 de Novembro de 1988\n"
+        "LOCAL: Prisão de Tóquio, Japão\n\n"
+        "Um jovem rebelde de 17 anos, Jotaro Kujo, trancou-se em uma cela alegando estar\n"
+        "possuído por um 'espírito maligno'. Mal sabia ele que essa força avassaladora é\n"
+        "um Stand: a manifestação física de sua própria energia vital, despertada pelo\n"
+        "retorno do maior arqui-inimigo de sua linhagem... DIO.\n\n"
+        "Com a vida de sua mãe, Holy Joestar, correndo perigo devido à terrível febre do Stand,\n"
+        "o relógio começa a correr implacavelmente. Joseph Joestar, Jotaro, Avdol, Kakyoin\n"
+        "e Polnareff iniciam uma cruzada de 50 dias cruzando o mundo rumo ao Egito.\n"
+        "O confronto final contra o mal absoluto está para começar!"
+    )
+    
+    input('\n(Pressione ENTER para iniciar a Fase 1)')
     narrativa_do_jogo()
 
-
-def texto_de_introducao(texto, velocidade=0.04):
+def texto_corrido(texto, velocidade=0.03): 
     os.system('cls')
     for letra in texto:
-        # sys.stdout.write joga a letra na tela sem pular linha automaticamente
         sys.stdout.write(letra)
-        # sys.stdout.flush garante que o terminal mostre a letra NA HORA, sem travar
         sys.stdout.flush()
-        # O programa espera um pouquinho antes de ir para a próxima letra
         time.sleep(velocidade)
     print()
+
+#----------MENSAGENS DE FLUXO----------#
+
+def frase_vitoria(fase):
+    os.system('cls')
+    heroi = fase['heroi_correto']
+    
+    print("----- VITÓRIA !! -----\n")
+    if heroi.nome == "Jotaro Kujo":
+        print(f'{heroi.nome}: "Yare Yare Daze... Você achou mesmo que o seu Stand seria páreo para o meu?"')
+    elif heroi.nome == "Kakyoin Noriaki":
+        print(f'{heroi.nome}: "Um verdadeiro trapaceiro sempre perde quando o mistério de seu Stand é revelado."')
+    elif heroi.nome == "Jean Pierre Polnareff":
+        print(f'{heroi.nome}: "Minha espada cortou até mesmo o seu orgulho! Sherry... eu te vinguei."')
+    elif heroi.nome == "Muhammad Avdol":
+        print(f'{heroi.nome}: "Como eu disse antes... Tsk Tsk! YES, I AM! O fogo purificou sua maldade."')
+    elif heroi.nome == "Joseph Joestar":
+        print(f'{heroi.nome}: "Sua próxima linha seria: \'Como ele previu isso?\'! Hahaha, a experiência vence a juventude!"')
+    
+    print("\nO inimigo desmaia. O caminho está livre para continuar a jornada!")
+
+def frase_derrota():
+    os.system('cls')
+    print("----- DERROTA CRUEL -----")
+    print("\nAs engrenagens do destino falharam...")
+    print("O herói escolhido não foi capaz de ler os movimentos do Stand inimigo e caiu em combate.")
+    print("Sem a sincronia correta, o grupo foi subjugado um a um pelas forças das trevas.")
+
+
+def fim_de_jogo():
+    print("\n==========================================")
+    print("               G A M E   O V E R           ")
+    print("==========================================")
+    print("\n   [ TO BE CONTINUED... ---> ]")
+    input()
+    print("\nDIO continuará reinando nas sombras. A linhagem Joestar foi interrompida.")
+    print("Refine sua estratégia e tente novamente do início!")
+    print("==========================================\n")
+
+def vitoria_definitiva():
+    """Exibe a tela de encerramento triunfal após derrotar o DIO na última fase."""
+    os.system('cls')
+    print("=====================================================================")
+    print("  ★  PARABÉNS! VOCÊ DETONOU JOJO'S BIZARRE ADVENTURE!  ★  ")
+    print("=====================================================================\n")
+    
+    texto_corrido(
+        "O amanhecer finalmente chega às ruas do Cairo...\n\n"
+        "Com um golpe devastador do Star Platinum, o corpo de DIO se fragmenta e se desfaz\n"
+        "em poeira sob os primeiros raios do sol egípcio. A maldição que assombrava a\n"
+        "família Joestar por mais de um século foi, finalmente, quebrada.\n\n"
+        "Holy Joestar acorda em sua cama no Japão, completamente curada, sorrindo ao sentir\n"
+        "que seu pai e seu filho estão salvos.\n\n"
+        "No aeroporto, os Crusaders sobreviventes se olham. Poucos voltaram dessa jornada,\n"
+        "mas os laços criados nesses 50 dias cruzando o mundo serão eternos.\n"
+        "A longa viagem de sobrevivência e orgulho chegou ao fim."
+    )
+    
+    print("\n=====================================================================")
+    print("                        F I M   D A   J O R N A D A                      ")
+    print("=====================================================================")
+    print("\n                    [   O B R I G A D O   P O R   J O G A R !   ]")
+    print("=====================================================================\n")
 
 #----------NARRATIVA----------#
 
 def narrativa_do_jogo():
     for fase in fases_do_jogo:
-        texto_de_introducao(f"DATA: {fase['data']}\nLOCAL: {fase['local']}\n{fase['texto_chegada']}")
-        input()
+        texto_corrido(f"DATA: {fase['data']}\nLOCAL: {fase['local']}\n{fase['texto_chegada']}")
         vilao = fase['vilao_da_fase']
-        texto_de_introducao(f"Eu sou {vilao.nome}, usuário do stand {vilao.stand.nome} !\nFui enviado por Lord Dio para aniquilar vocês, e é isso que irei fazer.")
         input()
+        if fase['local'] == "Egito (Cairo)":
+            texto_corrido(
+                f"Eu sou {vilao.nome}, usuário do stand {vilao.stand.nome} !\n"
+                "Vocês finalmente chegaram ao meu palácio, malditos Joestars... \n"
+                "O destino da sua linhagem termina aqui. Eu, DIO, governarei este mundo!"
+            )
+        else:
+            texto_corrido(f"Eu sou {vilao.nome}, usuário do stand {vilao.stand.nome} !\nFui enviado por Lord Dio para aniquilar vocês, e é isso que irei fazer.")
+
+        input()
+
         vitoria = combate_narrativa(fase, vilao)
         if vitoria == True: 
-            print('Vitória !')
+            frase_vitoria(fase)
             input()
         else: 
-            print ('Derrota !')
-            input()
+            frase_derrota()
+            fim_de_jogo()
+            break
 
+    vitoria_definitiva()
+    
 #----------COMBATE----------#
 
 def combate_narrativa(fase, vilao):
