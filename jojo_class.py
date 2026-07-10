@@ -1,18 +1,17 @@
 class Stand:
-    def __init__(self, nome, ataques_normais, ataques_apeloes):
-        self.nome = nome
-        self.ataques_normais = ataques_normais
-        self.ataques_apeloes = ataques_apeloes
+    def __init__(self, dicionario_stand):
+        self.nome = dicionario_stand["nome"]
+        self.fala_de_ataque = dicionario_stand["fala_de_ataque"]
+        self.ataque = 100
 
-    def atacar(self, fala_de_ataque):
-        self.fala_de_ataque = fala_de_ataque
-        print(fala_de_ataque)
+    def atacar(self):
+        print(self.fala_de_ataque)
         
 class Usuario:
-    def __init__(self, nome, hp_normal, hp_apelao, stand):
-        self.nome = nome
-        self.hp_normal = hp_normal
-        self.hp_apelao = hp_apelao
+    def __init__(self, dicionario_usuario, stand):
+        self.nome = dicionario_usuario["nome"]
+        self.hp_normal = dicionario_usuario["hp_normal"]
+        self.hp_apelao = dicionario_usuario["hp_apelao"]
         self.stand = stand
         
     def apanhar_justo(self, dano_recebido):
