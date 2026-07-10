@@ -1,6 +1,11 @@
 import os
 
-#----------FALAS----------#
+#----------DICIONÁRIOS----------#
+
+
+
+
+#----------SAUDAÇÕES----------#
 
 def saudacaoInical():
     print("\n-----BEM-VINDO AO GAME DE JOJO'S BIZARRES ADVENTURE EM PYTHON !-----\n")
