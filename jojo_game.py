@@ -1,6 +1,8 @@
 from jojo_class import Stand
 from jojo_class import Usuario
 import os
+import sys
+import time
 
 #----------DICIONÁRIOS----------#
 dados_do_starplatium = {
@@ -103,7 +105,7 @@ dados_do_rubbersoul = {
     "hp_apelao": 350
 }
 yellowtemperance = Stand(dados_do_yellowtemperance)
-rubbersoul = Usuario(dados_do_yellowtemperance, yellowtemperance) # Atenção: aqui passa a variável do stand correto
+rubbersoul = Usuario(dados_do_rubbersoul, yellowtemperance) # Atenção: aqui passa a variável do stand correto
 
 dados_do_hangedman = {
     "nome": "Hanged Man",
@@ -143,56 +145,76 @@ mariah = Usuario(dados_do_mariah, bastet)
 
 #----------FLUXO DE FASES----------#
 
-fases_do_jogo = {
-    1: {
+fases_do_jogo = [
+    {
         "local": "Hong Kong",
         "heroi_correto": kakyoinnoriaki,       
         "vilao_da_fase": grayfly,             
         "texto_chegada": "Vocês desembarcam em Hong Kong. O clima é tenso e, de repente, um inseto bizarro ataca no avião!"
     },
-    2: {
+    {
         "local": "Cingapura",
         "heroi_correto": jotarokujo,
         "vilao_da_fase": rubbersoul,
         "texto_chegada": "Chegando em Cingapura, em um hotel luxuoso, um aliado parece agir de forma muito estranha..."
     },
-    3: {
+    {
         "local": "Índia (Calcutá)",
         "heroi_correto": jeanpierrepolnareff,
         "vilao_da_fase": jgeil,
         "texto_chegada": "Nas ruas movimentadas de Calcutá, a chuva começa a cair e um reflexo mortal aparece nos espelhos."
     },
-    4: {
+    {
         "local": "Mar Vermelho",
         "heroi_correto": muhammadavdol,
         "vilao_da_fase": cameo,
         "texto_chegada": "Em uma ilha deserta no Mar Vermelho, desejos do passado ganham vida de forma assustadora."
     },
-    5: {
+    {
         "local": "Egito (Luxor)",
         "heroi_correto": josephjoestar,
         "vilao_da_fase": mariah,
         "texto_chegada": "Já em solo egípcio, na cidade de Luxor, uma tomada misteriosa em uma rocha desperta uma força magnética."
     },
-    6: {
+    {
         "local": "Egito (Cairo)",
         "heroi_correto": jotarokujo,
         "vilao_da_fase": dio,
         "texto_chegada": "O confronto final nas ruas escuras do Cairo. O próprio tempo parece parar diante da presença maligna de DIO!"
     }
-}
+]
 
 #----------SAUDAÇÕES----------#
 
 def saudacao_inical():
     print("\n-----BEM-VINDO AO GAME DE JOJO'S BIZARRES ADVENTURE EM PYTHON !-----\n")
     print("Nesse jogo você irá controlar o grupo de amigos liderados por Joseph Joestar e Jotaro Kujo em sua jornada para o Egito na caça de Dio, para salvar a vida de Holy Joestar !\n")
-    print("Tecle enter para seguir para as regras do jogo\n")
+    seguir_para_regras = input("Tecle enter para seguir para as regras do jogo\n")
+    if seguir_para_regras != 1:
+        regras_do_jogo()
 
 def regras_do_jogo():
     os.system('cls')
-    print('\n-----REGRAS DO GAME-----\n')
+    print('-----REGRAS DO GAME-----\n')
     print('O game consiste em acompanhar a narrativa da jornada de Jojo e seus amigos até ao Egito em busca de derrotar Dio !\n')
     print('Durante a jornada, você precisará escolher os personagens corretos para vencer os vilões que forem aparecendo no caminho, uma escolha errada fará você perder o jogo !\n')
-    print('Vamos Nessa ? (Tecle enter para começar)\n')
+    seguir_para_jogo = input('Vamos Nessa ? (Tecle enter para começar)\n')
+    if seguir_para_jogo != 1:
+        texto_de_introducao("DATA: 28 de Novembro de 1988\nLOCAL: Prisão de Tóquio, Japão\nUm jovem de 17 anos, Jotaro Kujo, trancou-se em uma cela alegando estar possuído por um 'espírito maligno'. Mal sabia ele que essa força é um Stand, uma manifestação de sua própria energia vital, despertada pelo retorno do arqui-inimigo de sua família: DIO.\nCom a vida de sua mãe, Holy Joestar, correndo perigo devido à febre do Stand, o relógio começa a correr. Joseph Joestar, Jotaro, Avdol, Kakyoin e Polnareff iniciam uma jornada desesperada de 50 dias rumo ao Egito. O destino do sangue Joestar será decidido agora!")
+
+def texto_de_introducao(texto, velocidade=0.04):
+    os.system('cls')
+    for letra in texto:
+        # sys.stdout.write joga a letra na tela sem pular linha automaticamente
+        sys.stdout.write(letra)
+        # sys.stdout.flush garante que o terminal mostre a letra NA HORA, sem travar
+        sys.stdout.flush()
+        # O programa espera um pouquinho antes de ir para a próxima letra
+        time.sleep(velocidade)
+    print()
+
+#----------NARRATIVA----------#
+
+saudacao_inical()
+
 
